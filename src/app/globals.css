@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ─── Custom Theme ─── */
+@theme {
+  --color-espresso-brown: #3B2F2F;
+  --color-crema-gold: #D4AF37;
+  --color-matte-black: #000000;
+  --color-warm-white: #FAF3E0;
+  --color-deep-charcoal: #0D0D0D;
+  --color-crema-gold-50: #D4AF3780;
+  --font-family-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    background-color: var(--color-matte-black);
+    color: var(--color-warm-white);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-crema-gold);
+    color: var(--color-matte-black);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-crema-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ─── Skip-to-content link (screen-reader-first) ─── */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-crema-gold);
+    color: var(--color-matte-black);
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* ─── Canvas Section ─── */
+  .hero-canvas-container {
+    position: relative;
+    height: 600vh;
+  }
+
+  .hero-canvas-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-canvas-sticky canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* ─── Text Overlay ─── */
+  .overlay-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  /* ─── Glassmorphism ─── */
+  .glass {
+    background: rgba(26, 26, 26, 0.50);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(212, 175, 55, 0.10);
+  }
+
+  /* ─── Gold Text Gradient ─── */
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 40%, #D4AF37 60%, #B8860B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Gold Button ─── */
+  .gold-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #D4AF37, #B8860B);
+    color: #1A1A1A;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(212, 175, 55, 0.25);
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .gold-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(212, 175, 55, 0.45);
+  }
+
+  .gold-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 16px rgba(212, 175, 55, 0.3);
+  }
+
+  /* ─── Stat Card ─── */
+  .stat-card {
+    background: rgba(212, 175, 55, 0.06);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 1rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .stat-card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.10);
+  }
+
+  /* ─── Badge ─── */
+  .section-badge {
+    display: inline-flex;
+    padding: 0.4rem 1.1rem;
+    border-radius: 100px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--color-crema-gold);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  /* ─── Separator ─── */
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-crema-gold), transparent);
+  }
+
+  /* ─── Traveling Cup ─── */
+  .traveling-cup {
+    position: fixed;
+    z-index: 30;
+    pointer-events: none;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.6));
+  }
+
+  /* ─── Final CTA ─── */
+  .final-cta-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .final-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center bottom,
+      rgba(212, 175, 55, 0.08) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  /* ─── Animations ─── */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 4px 24px rgba(212, 175, 55, 0.25); }
+    50% { box-shadow: 0 8px 40px rgba(212, 175, 55, 0.45); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-gold {
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+}
+
+/* ─── Accessibility: Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-deep-charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-crema-gold);
+  border-radius: 3px;
+}
