@@ -1,1 +1,0 @@
-<!DOCTYPE html><html><body><canvas id="c"></canvas><script>const img = new Image(); img.onload = () => { const ctx = document.getElementById("c").getContext("2d"); ctx.drawImage(img, 0, 0); const d = ctx.getImageData(0,0,1,1).data; document.body.innerHTML = "COLOR: RGB(" + d[0] + "," + d[1] + "," + d[2] + ")"; }; img.src = "ezgif-frame-001.png";</script></body></html>
