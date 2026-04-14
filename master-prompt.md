@@ -1,43 +1,100 @@
 # VibeCoded Scrollytelling Website - Master Prompt
 
-You are a Staff-Level Frontend Engineer and Premium UI/UX Designer who has built numerous Award-winning websites.
+One-Shot Prompt: "Perspresso" Ultimate Scrollytelling Experience
 
-Your task is to build a high-end, production-ready "scrollytelling" e-commerce website for a premium product using Next.js and Tailwind CSS.
+Role: You are a world-class Frontend Architect and Creative Developer specializing in "Awwwards" winning interactive websites.
 
-### Project Requirements & Context:
-**Product Name:** [INSERT PRODUCT NAME HERE]
-**Brand Identity:** [INSERT BRAND DESCRIPTION/VIBE HERE - e.g., "Minimalist, luxury skincare", "High-tech gaming gear"]
+Objective: Build a complete, production-ready, single-page "Scrollytelling" e-commerce site for Perspresso, a premium canned espresso. The site must use Next.js 14+ (App Router), TypeScript, Tailwind CSS, and Framer Motion.
 
-### Technology Stack:
-1. Next.js 15 (App Router)
-2. TypeScript
-3. Tailwind CSS v4
-4. Framer Motion 12
+Key Requirement: Generate every single file required so I can copy-paste them and run npm run build immediately.
 
-### Visual & Architectural "Vibe":
-- **Apple-inspired Aesthetics:** The design must feel ultra-premium, minimalistic, and highly polished. Dark mode by default, deep rich blacks, smooth gradients, and sharp typography.
-- **Scrollytelling:** The site is heavily driven by user scroll. Do not use generic static layouts. The interface should feel alive.
+1. Technical Specification
+Framework: Next.js (App Router).
 
-### Core Features & Implementation Details:
+Styling: Tailwind CSS.
 
-1. **Canvas Image Sequence (The Hero):**
-   - Implement a Hero section driven by an HTML5 `<canvas>`.
-   - The canvas should render an image sequence that advances forward or backward bound tightly to the user's scroll position. 
-   - Ensure the scroll-linked animation is liquid-smooth and achieves 60fps.
-   - Compose the canvas rendering loop directly in a dedicated `HeroCanvas.tsx` component.
-   - Make sure image layers are perfectly horizontally and vertically centered within the viewport.
+Animation: Framer Motion (scroll-linked transforms) + HTML5 Canvas (image sequence).
 
-2. **The "Traveling Product" Mechanic:**
-   - After the hero section, introduce a main product image (e.g., a bottle, device, or package) that dynamically moves and scales across the screen as the user scrolls down into subsequent content sections.
-   - Use Framer Motion (`useScroll`, `useTransform`) to bind the element's `y` position, `opacity`, and `scale` to the page scroll viewport progress.
-   - Prevent any layout overlapping by carefully managing z-indexes and dynamic padding.
+Asset Paths:
 
-3. **Content Sections:**
-   - Design highly aesthetic typography sections overlaid or spaced elegantly around the scrollytelling elements.
-   - Ensure clear separation, readability, and visual balance between text content and the hero/traveling images.
-   - Finish the page with a strong, highly polished and visually satisfying Call-To-Action (CTA).
+Sequence: /public/images/sequence/ (192 frames, JPG).
 
-4. **Performance & Configuration:**
-   - Optimize for next.js static export (`output: 'export'`). 
-   - Ensure robust UI/UX standards for all buttons, hover states, and spacing.
-   - Deliver a complete, static-export-ready codebase with clean separation of concerns (e.g., `src/components/`, `src/data/`, `src/app/`).
+Static Cup: /public/images/perspresso-cup-static.png (Used for the post-sequence journey).
+
+Naming Convention: Sequence uses ezgif-frame-001.jpg through ezgif-frame-192.jpg.
+
+Deployment: Static Export (output: 'export').
+
+2. Project Structure & File Requirements
+A. Data Layer (data/product.ts) Create a robust data file. Use these specifics:
+
+Name: Perspresso
+
+Price: $18.00
+
+Colors: Espresso Brown (#3B2F2F), Crema Gold (#D4AF37), Matte Black (#1A1A1A).
+
+Static Assets: staticCup: '/images/perspresso-cup-static.png', finalTagline: 'AWAKEN YOUR SENSES. BREW NOW.'
+
+Specs: Single-Origin Arabica, 120mg Natural Caffeine, Bold Roast, Zero Calories.
+
+Story Sections (Overlays for sequence):
+
+The Morning Awakening.
+
+Rich Crema Profile.
+
+Pure Focus. Liquid Drive.
+
+Post-Sequence Content Sections:
+
+Roast & Origin Specs: Detailed breakdown of the bean sourcing and roasting process.
+
+Executive Tested: Performance and deep-work focus benefits.
+
+B. Configuration
+
+next.config.mjs: Enable output: 'export' and images: { unoptimized: true }.
+
+tailwind.config.ts: Add custom colors (perspressoBrown, perspressoGold, perspressoBlack) and the 'Montserrat' font.
+
+C. Core Components & Logic
+
+components/HeroCanvas.tsx (Phase 1 - The Sequence):
+
+A sticky container (h-[600vh]).
+
+Loads and draws the 192 JPG frames onto Canvas based on scroll progress.
+
+Must handle pre-loading and responsive object-fit: contain.
+
+components/TravelingCup.tsx (Phase 2 - The Journey):
+
+Crucial Logic: This component renders the static /images/perspresso-cup-static.png.
+
+It stays hidden until the HeroCanvas sequence finishes.
+
+Once the user scrolls past the canvas section, this cup becomes position: fixed.
+
+Use Framer Motion's useScroll relative to the remaining page content to drive complex transforms:
+
+Movement: As the user scrolls through the "Post-Sequence Content Sections," the cup should professionally rotate slightly, zoom in/out gently, and translate horizontally (zigzagging slightly across the text content).
+
+The Landing: As the user reaches the final footer section, the cup must smoothly transition to a center-stage position, stop moving, and settle just above the final tagline.
+
+components/TextOverlays.tsx: High-impact text layers for the initial canvas phase.
+
+components/Navbar.tsx: Glassmorphism header with an "$18 BUY NOW" gradient button.
+
+components/PostSequenceContent.tsx: The standard HTML sections (Origin Specs, Executive Tested) that the traveling cup will move over.
+
+D. Page Orchestration (app/page.tsx)
+
+Structure the page order: Navbar -> HeroCanvas (w/ TextOverlays) -> TravelingCup (The connector) -> PostSequenceContent -> FinalCTA/Footer.
+
+Ensure smooth transitions between the finished canvas state and the taking over of the static traveling cup. The handoff must be seamless.
+
+Global background color should transition from Espresso Brown to Matte Black down the page.
+
+3. Execution
+Generate the complete, error-free code for all necessary files. The animation of the static cup in Phase 2 must feel premium, weighted, and synchronized with the scrolling of the text sections it passes.
